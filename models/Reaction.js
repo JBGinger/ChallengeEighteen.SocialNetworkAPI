@@ -1,22 +1,27 @@
-const { Schema, model, Types } = require('mongoose');
+const { Schema, Types } = require('mongoose');
+const dateFormat = require('../utils/dateFormat');
 
-Reaction = new Schema(
+const ReactionSchema = new Schema(
     {
         reactionId: {
             type: Schema.Types.ObjectId,
-            default: new Objectid //I don't think this is right.
+            default: () => new Types.ObjectId()
         },
         reactionBody: {
             type: String,
             required: true,
-            //280 character max
+            maxlength: 280
         },
         username: {
             type: String,
             required: true
         },
         createdAt: {
-            //Date + time
+            type: Date,
+            default: Date.now,
+            get: createdAtVal => dateFormat(createdAtVal)
         }
     }
-)
+);
+
+module.exports = ReactionSchema;
