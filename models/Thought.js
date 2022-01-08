@@ -1,9 +1,13 @@
-const { Schema, model } = require('mongoose');
+const { Schema, model, Types } = require('mongoose');
 const Reaction = require('./Reaction');
 const dateFormat = require('../utils/dateFormat');
 
 const ThoughtSchema = new Schema(
     {
+        thoughtId: {
+            type: Schema.Types.ObjectId,
+            default: () => Types.ObjectId()
+        },
         thoughtText: {
             type: String,
             required: true,
@@ -25,7 +29,8 @@ const ThoughtSchema = new Schema(
         toJSON: {
             virtuals: true,
             getters: true
-        }
+        },
+        id: false
     }
 );
 
