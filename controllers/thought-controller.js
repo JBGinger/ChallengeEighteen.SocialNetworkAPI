@@ -13,7 +13,7 @@ const thoughtContoller = {
     },
 
     getThoughtById({ params }, res) {
-        Thoughts.findOne({ _id: params.id })
+        Thoughts.findOne({ _id: params.thoughtId })
         .select('-__v')
             .sort({ _id: -1 })
             .then(dbThoughtData => res.json(dbThoughtData))
@@ -23,14 +23,14 @@ const thoughtContoller = {
             });
     },
 
-    addThought({ params, body }, res) {
-        console.log(params);
-        Thoughts.create(body)
+    addThought(req, res) {
+        console.log(req.params);
+        Thoughts.create(req.body)
             .then(({ _id }) => {
                 return User.findOneAndUpdate(
-                    { _id: params.userId },
+                    { _id: req.params.userId },
                     { $push: { thoughts: _id } },
-                    { new: true }
+                    { new: true, runValidators: true }
                 );
             })
             .then(dbThoughtData => {
