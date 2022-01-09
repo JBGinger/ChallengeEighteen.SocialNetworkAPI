@@ -4,6 +4,7 @@
 The purpose of this project was to create an API that could be used by a social networking site. Through this API, you are able to create user accounts, create posts (called thoughts), comment on posts (called reactions), and add users to eachother's friends lists. You are also able to delete user accounts, delete thoughts/reactions, and remove users from eachother's friends list.
 
 ## Walkthrough Video
+https://watch.screencastify.com/v/UjpiTgrSaCbfFTJ1hC4o
 
 ## Table Of Contents
 * [Description](#description)
